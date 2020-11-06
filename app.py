@@ -69,6 +69,7 @@ def initiate_payment():
 
     req.update(payment_info)
     response = requests.post(BASE_URI + PAYMENT_EP, headers = HEADERS, json = req)
+    print("INITIATE PAYMENT #####", response.json())
     return response.json()
 
 @app.route('/api/submitAdditionalDetails', methods=["POST"])
@@ -80,6 +81,7 @@ def additional_details():
 @app.route('/api/handleShopperRedirect', methods=["GET", "POST"])
 def handle_redirect():
     incoming = request.json if request.is_json else request.values.to_dict()
+    print("ShopperRedirect#####", incoming)
 
     # Handle Alipay / Wechat
 
