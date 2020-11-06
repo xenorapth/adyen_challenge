@@ -55,7 +55,7 @@ def initiate_payment():
             "currency": "SGD"
         },
         "channel": "Web",
-        "reference": "test_12",
+        "reference": "Fazri_checkoutChallenge",
         "shopperReference": "Random Shopper",
         "shopperLocale": "en_US",
         "countryCode": "SG",
