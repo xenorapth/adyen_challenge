@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>Processing....</h1>
+
+
+<script>
+    const paymentData = localStorage.getItem("paymentData");
+    let details = {{ incoming|tojson }};
+    const payload = {
+        paymentData: paymentData,
+        details: details
+    }
+
+    fetch('/api/handleShopperRedirect', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    }).then(response => {
+        localStorage.removeItem("paymentData");
+        window.location.href = response.url;
+    });
+</script>
+
+
+{% endblock %}

@@ -7,7 +7,7 @@ load_dotenv()
 
 BASE_URI = os.getenv("BASE_URI")
 PAYMENT_METHODS_EP = os.getenv("PAYMENT_METHODS_EP")
-PAYMENT_EP = os.getenv("PAYMENT_EP")
+PAYMENT_EP = os.getenv("PAYMENTS_EP")
 ADDITIONAL_DETAILS_EP = os.getenv("ADDITIONAL_DETAILS_EP")
 
 API_KEY = os.getenv("API_KEY")
@@ -46,7 +46,7 @@ def get_payment_methods():
     response = requests.post(BASE_URI + PAYMENT_METHODS_EP, headers = HEADERS, json = req)
     return response.json()
 
-@app.route('/api/initiatePayment', method=["POST"])
+@app.route('/api/initiatePayment', methods=["POST"])
 def initiate_payment():
     payment_info = request.get_json()
     req = {
@@ -104,7 +104,7 @@ def handle_redirect():
     else:
         return render_template('process.html', incoming = incoming)
 
-@app.route('/result/<status')
+@app.route('/result/<status>')
 def result(status):
     return render_template('result.html', status = status)
 
