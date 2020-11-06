@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="columns">
+    <div class="column">
+        <div class="card">
+            <div class="card-image">
+                <figure class="image is-4by3">
+                    <img src="https://bulma.io/images/placeholders/480x480.png">
+                </figure>
+            </div>
+            <div class="card-content">
+                <div class="content">
+                    <p class="title is-4">An amazing product</p>
+                    <p class="subtitle is-6">$10</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-footer-item">
+                        <a class="button is-primary is-large" href="{{ url_for('checkout') }}">Buy</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
