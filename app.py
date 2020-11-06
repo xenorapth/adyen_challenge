@@ -14,6 +14,11 @@ API_KEY = os.getenv("API_KEY")
 MERCHANT_ACCOUNT = os.getenv("MERCHANT_ACCOUNT")
 CLIENT_KEY = os.getenv("CLIENT_KEY")
 
+HEADERS = {
+    "x-API-key": API_KEY,
+    "Content-Type": "application/json"
+}
+
 
 app = Flask(__name__)
 
@@ -24,3 +29,19 @@ def home():
 @app.route('/checkout')
 def checkout():
     return render_template('checkout.html', client_key = CLIENT_KEY)
+
+
+@app.route('/api/getPaymentMethods', methods=["POST"])
+def get_payment_methods():
+    req = {
+        "merchantAccount": MERCHANT_ACCOUNT,
+        "channel": "Web",
+        "countryCode": "SG",
+        "amount": {
+            "currency": "SGD",
+            "value": 1500
+        }
+    }
+
+    response = requests.post(BASE_URI + PAYMENT_METHODS_EP, headers = HEADERS, json = req)
+    return response.json()
